@@ -71,11 +71,35 @@
               }
           }
 
-          const playerChoice = 'rOcK';
-          const computerChoice = computerPlay();
-          console.log(`playerchoice: ${playerChoice}, computerChoice: ${computerChoice}`);
-          console.log(playRound(playerChoice, computerChoice));
+          function game() {
+              let playerScore = 0;
+              let computerScore = 0;
 
+              for (let i = 0; i < 5; i++) {
+                  let playerChoice;
+                  while (playerChoice === undefined || !(playerChoice.toLowerCase() === 'rock' || playerChoice.toLowerCase() === 'paper' || playerChoice.toLowerCase() === 'scissors')) {
+                      playerChoice = prompt("Rock, Paper, or Scissors?");
+                  }
+                  let computerChoice = computerPlay();
+                  let resultString = playRound(playerChoice, computerChoice);
+                  if (resultString.includes('win')) {
+                      playerScore += 1;
+                  } else if (resultString.includes('lose')) {
+                      computerScore +=1;
+                  }
+                  console.log(resultString);
+                  console.log(`Player: ${playerScore}    Computer: ${computerScore}`);
+              }
+              if (playerScore > computerScore) {
+                  console.log('Player wins!');
+              } else if (computerScore > playerScore) {
+                  console.log('Computer wins!');
+              } else {
+                  console.log('Game ends in a tie!');
+              }
+          }
+          
+          game();
         </script>
     </body>
 </html>
