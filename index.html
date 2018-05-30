@@ -76,9 +76,17 @@
               let computerScore = 0;
 
               for (let i = 0; i < 5; i++) {
+                  let choiceMade = false;
                   let playerChoice;
-                  while (playerChoice === undefined || !(playerChoice.toLowerCase() === 'rock' || playerChoice.toLowerCase() === 'paper' || playerChoice.toLowerCase() === 'scissors')) {
-                      playerChoice = prompt("Rock, Paper, or Scissors?");
+                  while (!choiceMade) {
+                      playerChoice = prompt('Rock, Paper, or Scissors?');
+                      if (playerChoice === null) {
+                          console.log('Please enter your choice');
+                      } else if (!(playerChoice.toLowerCase() === 'rock' || playerChoice.toLowerCase() === 'paper' || playerChoice.toLowerCase() === 'scissors')) {
+                          console.log('Please choose from the three choices');
+                      } else {
+                          choiceMade = true;
+                      }
                   }
                   let computerChoice = computerPlay();
                   let resultString = playRound(playerChoice, computerChoice);
