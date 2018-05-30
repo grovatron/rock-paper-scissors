@@ -2,10 +2,24 @@
 <html>
     <head>
         <title>Rock, Paper, Scissors!</title>
+        <meta charset="UTF-8">
     </head>
     <body>
         <script>
         
+          function computerPlay() {
+              let computerChoices = ['rock', 'paper', 'scissors'];
+              let choiceIndex = randomInt(3);
+              return computerChoices[choiceIndex];
+          }
+
+          function randomInt(upperLimit) {
+              return Math.floor(Math.random() * upperLimit);
+          }
+
+          for (let i = 0; i < 3; i++) {
+              console.log(computerPlay());
+          }
         </script>
     </body>
 </html>
