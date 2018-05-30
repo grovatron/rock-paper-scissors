@@ -9,7 +9,7 @@
         
           function computerPlay() {
               let computerChoices = ['rock', 'paper', 'scissors'];
-              let choiceIndex = randomInt(3);
+              let choiceIndex = randomInt(computerChoices.length);
               return computerChoices[choiceIndex];
           }
 
@@ -17,9 +17,65 @@
               return Math.floor(Math.random() * upperLimit);
           }
 
-          for (let i = 0; i < 3; i++) {
-              console.log(computerPlay());
+          function playRound(playerSelection, computerSelection) {
+              let playerChoice = playerSelection.toLocaleLowerCase();
+              let result = getResult(playerChoice, computerSelection);
+              return createResultString(playerChoice, computerSelection, result);
           }
+
+          function getResult(playerSelection, computerSelection) {
+              let result;
+              if (playerSelection === 'rock') {
+                  if (computerSelection === 'paper') {
+                      result = 'lose';
+                  } else if (computerSelection === 'scissors') {
+                      result = 'win';
+                  } else {
+                      result = 'tie';
+                  }
+              } else if (playerSelection === 'paper') {
+                  if (computerSelection === 'scissors') {
+                      result = 'lose';
+                  } else if (computerSelection === 'rock') {
+                      result = 'win';
+                  } else {
+                      result = 'tie';
+                  }
+              } else {
+                  if (computerSelection === 'rock') {
+                      result = 'lose';
+                  } else if (computerSelection === 'paper') {
+                      result = 'win';
+                  }  else {
+                      result = 'tie';
+                  }
+              }
+              return result;
+          }
+
+          function createResultString(playerChoice, computerChoice, result) {
+              if (result === 'win') {
+                  return `You win! ${capitalize(playerChoice)} beats ${computerChoice}!`;
+              } else if (result === 'lose') {
+                  return `You lose! ${capitalize(computerChoice)} beats ${playerChoice}!`;
+              } else {
+                  return "It's a tie!";
+              }
+          }
+
+          function capitalize(str) {
+              if (str.length <= 1) {
+                  return str.toLocaleUpperCase();
+              } else {
+                  return str.substring(0,1).toLocaleUpperCase() + str.substring(1).toLocaleLowerCase();
+              }
+          }
+
+          const playerChoice = 'rOcK';
+          const computerChoice = computerPlay();
+          console.log(`playerchoice: ${playerChoice}, computerChoice: ${computerChoice}`);
+          console.log(playRound(playerChoice, computerChoice));
+
         </script>
     </body>
 </html>
