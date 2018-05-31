@@ -30,3 +30,17 @@ rpsMap.set(r, new RPSObject(s, p));
 rpsMap.set(p, new RPSObject(r, s));
 rpsMap.set(s, new RPSObject(p, r));
 
+display.textContent = defaultDisplay;
+rBtn.textContent = r;
+pBtn.textContent = p;
+sBtn.textContent = s;
+capitalizeText(display, rBtn, pBtn, sBtn);
+
+function capitalizeText() {
+    if (arguments.length === 0) {
+        return;
+    }
+    for (let i = 0; i < arguments.length; i++) {
+        arguments[i].style.textTransform = 'capitalize';
+    }
+}
