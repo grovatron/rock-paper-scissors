@@ -2,6 +2,7 @@
 let display = document.querySelector('.display');
 let playerScore = document.querySelector('.player');
 let computerScore = document.querySelector('.computer');
+let bestOfDisplay = document.querySelector('.best-of');
 
 // select all buttons
 const choiceBtns = document.querySelectorAll('.choice-btns .btn');
@@ -43,6 +44,7 @@ display.textContent = defaultDisplay;
 rBtn.textContent = r;
 pBtn.textContent = p;
 sBtn.textContent = s;
+bestOfDisplay.textContent = bestOutOf;
 capitalizeText(display, rBtn, pBtn, sBtn);
 
 // add event listeners for buttons
