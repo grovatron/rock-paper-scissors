@@ -72,16 +72,16 @@ function displayChoice(choiceString) {
 }
 
 function playRound(event) {
-    if (playerChoice === null) {
-        display.textContent = "make a choice!";
+    if(gameOver) {
         return;
-    } else if (gameOver) {
-        return;
+    } else if (playerChoice === null) {
+        display.textContent = "make a choice!"
     }
     getCompChoice();
     const result = compareChoices();
     handleResult(result);
     checkGameOver();
+    playerChoice = null;
     console.log('playing a round');
 }
 
