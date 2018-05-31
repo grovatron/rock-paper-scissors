@@ -30,6 +30,10 @@ rpsMap.set(r, new RPSObject(s, p));
 rpsMap.set(p, new RPSObject(r, s));
 rpsMap.set(s, new RPSObject(p, r));
 
+// player choice and array of choices for computer
+let playerChoice = null;
+const compChoices = Array.from(rpsMap.keys());
+
 // set text content for display and choice buttons
 display.textContent = defaultDisplay;
 rBtn.textContent = r;
@@ -52,7 +56,12 @@ function capitalizeText() {
 }
 
 function makeChoice(event) {
-    console.log(this.textContent);
+    displayChoice(this.textContent);
+    playerChoice = rpsMap.get(this.textContent);
+}
+
+function displayChoice(choiceString) {
+    display.textContent = `You are playing ${choiceString}!`;
 }
 
 function playRound(event) {
