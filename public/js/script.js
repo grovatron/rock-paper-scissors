@@ -153,5 +153,9 @@ function displayGameResults() {
 }
 
 function reset(event) {
+    gameOver = false;
+    playerScore.textContent = 0;
+    computerScore.textContent = 0;
+    display.textContent = defaultDisplay;
     console.log('resetting');
 }
