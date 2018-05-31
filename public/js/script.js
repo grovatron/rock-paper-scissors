@@ -19,20 +19,24 @@ const s = 'scissors';
 const defaultDisplay = `${r}, ${p}, ${s}!`;
 
 // define RPSObject to make comparing choices easier
-function RPSObject(strength, weakness) {
+function RPSObject(type, strength, weakness) {
+    this.type = type;
     this.strength = strength;
     this.weakness = weakness;
 }
 
 // map RPS choices to their corresponding objects
 const rpsMap = new Map();
-rpsMap.set(r, new RPSObject(s, p));
-rpsMap.set(p, new RPSObject(r, s));
-rpsMap.set(s, new RPSObject(p, r));
+rpsMap.set(r, new RPSObject(r, s, p));
+rpsMap.set(p, new RPSObject(p, r, s));
+rpsMap.set(s, new RPSObject(s, p, r));
 
 // player choice and array of choices for computer
 let playerChoice = null;
+let compChoice = null;
 const compChoices = Array.from(rpsMap.keys());
+const bestOutOf = 5;
+let gameOver = false;
 
 // set text content for display and choice buttons
 display.textContent = defaultDisplay;
@@ -56,6 +60,9 @@ function capitalizeText() {
 }
 
 function makeChoice(event) {
+    if (gameOver) {
+        return;
+    }
     displayChoice(this.textContent);
     playerChoice = rpsMap.get(this.textContent);
 }
@@ -65,7 +72,84 @@ function displayChoice(choiceString) {
 }
 
 function playRound(event) {
-    console.log('playing round');
+    if (playerChoice === null) {
+        display.textContent = "make a choice!";
+        return;
+    } else if (gameOver) {
+        return;
+    }
+    getCompChoice();
+    const result = compareChoices();
+    handleResult(result);
+    checkGameOver();
+    console.log('playing a round');
+}
+
+function getCompChoice() {
+    const index = Math.floor(Math.random() * compChoices.length);
+    console.log('computer chose: ' + compChoices[index]);
+    compChoice = rpsMap.get(compChoices[index]);
+}
+
+function compareChoices() {
+    let result;
+    if (playerChoice.strength === compChoice.type) {
+        result = 'win';
+    } else if (playerChoice.weakness === compChoice.type) {
+        result = 'lose';
+    } else {
+        result = 'tie';
+    }
+    console.log(`result: ${result}`);
+    return result;
+}
+
+function handleResult(result) {
+    if (result === 'tie') {
+        displayResult(result);
+        return;
+    }
+    displayResult(result);
+    incrementScore(result);
+}
+
+function displayResult(result) {
+    let resultString;
+    if (result === 'win') {
+        resultString = `${playerChoice.type} beats ${compChoice.type}!`;
+    } else if (result === 'lose') {
+        resultString = `${playerChoice.type} loses to ${compChoice.type}!`;
+    } else {
+        resultString = "This round is a tie!";
+    }
+    display.textContent = resultString;
+}
+
+function incrementScore(result) {
+    if (result === 'win') {
+        playerScore.textContent = parseInt(playerScore.textContent) + 1;
+    } else if (result === 'lose') {
+        computerScore.textContent = parseInt(computerScore.textContent) + 1;
+    }
+}
+
+function checkGameOver() {
+    if (parseInt(playerScore.textContent) + parseInt(computerScore.textContent) !== bestOutOf) {
+        return;
+    }
+    gameOver = true;
+    displayGameResults();
+    console.log('game over');
+}
+
+function displayGameResults() {
+    let gameResultString;
+    if (playerScore.textContent > computerScore.textContent) {
+        gameResultString = 'You win!';
+    } else {
+        gameResultString = 'You lose!';
+    }
+    display.textContent = gameResultString;
 }
 
 function reset(event) {
