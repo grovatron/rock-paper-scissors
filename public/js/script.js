@@ -30,11 +30,17 @@ rpsMap.set(r, new RPSObject(s, p));
 rpsMap.set(p, new RPSObject(r, s));
 rpsMap.set(s, new RPSObject(p, r));
 
+// set text content for display and choice buttons
 display.textContent = defaultDisplay;
 rBtn.textContent = r;
 pBtn.textContent = p;
 sBtn.textContent = s;
 capitalizeText(display, rBtn, pBtn, sBtn);
+
+// add event listeners for buttons
+choiceBtns.forEach(button => button.addEventListener('click', makeChoice));
+playBtn.addEventListener('click', playRound);
+resetBtn.addEventListener('click', reset);
 
 function capitalizeText() {
     if (arguments.length === 0) {
@@ -43,4 +49,16 @@ function capitalizeText() {
     for (let i = 0; i < arguments.length; i++) {
         arguments[i].style.textTransform = 'capitalize';
     }
+}
+
+function makeChoice(event) {
+    console.log(this.textContent);
+}
+
+function playRound(event) {
+    console.log('playing round');
+}
+
+function reset(event) {
+    console.log('resetting');
 }
