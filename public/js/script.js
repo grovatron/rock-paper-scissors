@@ -78,6 +78,7 @@ function playRound(event) {
         return;
     } else if (playerChoice === null) {
         display.textContent = "make a choice!"
+        return;
     }
     getCompChoice();
     const result = compareChoices();
