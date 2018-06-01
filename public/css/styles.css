@@ -6,6 +6,11 @@
 .container {
     text-align: center;
     padding: 25px;
+    font-family: arial, sans-serif;
+}
+
+.header {
+    font-family: 'Permanent Marker', cursive;
 }
 
 .display, .score{
@@ -37,4 +42,38 @@
     border: 1px black solid;
     margin: 0 10px;
     line-height: 25px;
+    color: #FFF;
+    font-weight: bold;
+}
+
+.choice-btns .btn {
+    background-color: #6eca62;
+    border: 1px solid #6eca62;
+}
+
+.play {
+    background-color: #cb4141;
+    border: 1px solid #cb4141;
+}
+
+.reset {
+    background-color: #3d75e1;
+    border: 1px solid #3d75e1;
+}
+
+.btn:hover {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.choice-btns .btn:hover {
+    color: #6eca62;
+}
+
+.play:hover {
+    color: #cb4141;
+}
+
+.reset:hover {
+    color: #3d75e1;
 }
