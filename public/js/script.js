@@ -37,6 +37,7 @@ let playerChoice = null;
 let compChoice = null;
 const compChoices = Array.from(rpsMap.keys());
 const bestOutOf = 5;
+const winCondition = Math.floor(bestOutOf / 2) + 1;
 let gameOver = false;
 
 // set text content for display and choice buttons
@@ -137,7 +138,7 @@ function incrementScore(result) {
 }
 
 function checkGameOver() {
-    if (parseInt(playerScore.textContent) + parseInt(computerScore.textContent) !== bestOutOf) {
+    if (!(playerScore.textContent == winCondition || computerScore.textContent == winCondition)) {
         return;
     }
     gameOver = true;
@@ -150,7 +151,7 @@ function checkGameOver() {
 
 function displayGameResults() {
     let gameResultString;
-    if (playerScore.textContent > computerScore.textContent) {
+    if (playerScore.textContent == winCondition) {
         gameResultString = 'You win!';
     } else {
         gameResultString = 'You lose!';
