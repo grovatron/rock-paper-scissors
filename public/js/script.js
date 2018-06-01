@@ -142,6 +142,9 @@ function checkGameOver() {
     }
     gameOver = true;
     displayGameResults();
+    choiceBtns.forEach(button=>{button.classList.remove('choice-btn-hover'); button.classList.add('game-over')});
+    playBtn.classList.remove('play-hover');
+    playBtn.classList.add('game-over');
     console.log('game over');
 }
 
@@ -160,5 +163,8 @@ function reset(event) {
     playerScore.textContent = 0;
     computerScore.textContent = 0;
     display.textContent = defaultDisplay;
+    choiceBtns.forEach(button=>{button.classList.remove('game-over'); button.classList.add('choice-btn-hover')});
+    playBtn.classList.remove('game-over');
+    playBtn.classList.add('play-hover');
     console.log('resetting');
 }

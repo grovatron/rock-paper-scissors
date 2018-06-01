@@ -61,19 +61,24 @@
     border: 1px solid #3d75e1;
 }
 
-.btn:hover {
+.game-over {
+    opacity: .5;
+}
+
+.choice-btn-hover:hover {
     background-color: #fff;
+    color: #6eca62;
     cursor: pointer;
 }
 
-.choice-btns .btn:hover {
-    color: #6eca62;
-}
-
-.play:hover {
+.play-hover:hover {
+    background-color: #fff;
     color: #cb4141;
+    cursor: pointer;
 }
 
-.reset:hover {
+.reset-hover:hover {
+    background-color: #fff;
     color: #3d75e1;
+    cursor: pointer;
 }
